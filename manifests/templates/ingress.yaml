@@ -1,0 +1,21 @@
+---
+# Source: helm for kubernetes/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: springs                  # Ingress name
+  labels:
+    app: springs
+spec:
+  ingressClassName: nginx   # Optional ingressClass
+  rules:
+    - host: "springs.smartops.space"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: springs               # Links to Service name dynamically
+                port:
+                  number: 8080  # Links to service port dynamically
